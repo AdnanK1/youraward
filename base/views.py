@@ -53,7 +53,8 @@ def register(request):
             return redirect('home')
     context = {'form':form}
     return render(request,'auth/register.html',context)
-
+    
+@login_required(login_url='login')
 def submission(request):
     form = SubmitProject()
     if request.method == 'POST':
