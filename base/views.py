@@ -67,6 +67,10 @@ def submission(request):
     context = {'form':form}
     return render(request,'submission.html',context)
 
+def user(request):
+    context = {}
+    return render(request,'profile.html',context)
+
 def profile(request):
     context = {}
     return render(request,'profile.html',context)
