@@ -69,7 +69,7 @@ def submission(request):
 
 def user(request):
     context = {}
-    return render(request,'profile.html',context)
+    return render(request,'user.html',context)
 
 def profile(request):
     context = {}
