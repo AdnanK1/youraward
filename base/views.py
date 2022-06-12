@@ -4,3 +4,11 @@ from django.shortcuts import render,redirect
 def home(request):
     context = {}
     return render(request,'home.html',context)
+
+def loginPage(request):
+    context = {}
+    return render(request,'auth/login.html',context)
+
+def register(request):
+    context = {}
+    return render(request,'auth/register.html',context)
