@@ -53,7 +53,7 @@ def register(request):
             return redirect('home')
     context = {'form':form}
     return render(request,'auth/register.html',context)
-    
+
 @login_required(login_url='login')
 def submission(request):
     form = SubmitProject()
@@ -66,3 +66,7 @@ def submission(request):
             return redirect('home')
     context = {'form':form}
     return render(request,'submission.html',context)
+
+def profile(request):
+    context = {}
+    return render(request,'profile.html',context)
