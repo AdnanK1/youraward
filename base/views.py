@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import CreateUserForm,SubmitProject
+from .forms import CreateUserForm,SubmitProject,BioForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -68,7 +68,15 @@ def submission(request):
     return render(request,'submission.html',context)
 
 def user(request):
-    context = {}
+    form = BioForm()
+    if request.method == 'POST':
+        form = BioForm(request.POST,request.FILES)
+        if form.is_valid():
+            prof = form.save(commit=False)
+            prof.user = request.user
+            prof.save()
+            return redirect('profile') 
+    context = {'form':form}
     return render(request,'user.html',context)
 
 def profile(request):

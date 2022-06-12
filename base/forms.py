@@ -14,3 +14,9 @@ class SubmitProject(ModelForm):
         model = models.Project
         fields = '__all__'
         exclude = ['user','likes']
+
+class BioForm(ModelForm):
+    class Meta:
+        model = models.Profile
+        fields = '__all__'
+        exclude = ['user']
