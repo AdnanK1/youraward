@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import CreateUserForm
+from .forms import CreateUserForm,SubmitProject
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
@@ -55,5 +55,13 @@ def register(request):
     return render(request,'auth/register.html',context)
 
 def submission(request):
-    context = {}
+    form = SubmitProject()
+    if request.method == 'POST':
+        form = SubmitProject(request.POST,request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = request.user
+            project.save()
+            return redirect('home')
+    context = {'form':form}
     return render(request,'submission.html',context)
