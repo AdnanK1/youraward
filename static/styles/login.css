@@ -11,12 +11,12 @@ body{
     background: linear-gradient(120deg, blueviolet,black);
 }
 h1{
-    color: #607d8b;
+    color: #2442ea;
     font-weight: 600;
     font-size: 1.5em;
     text-transform: uppercase;
     margin-bottom: 20px;
-    border-bottom: 4px solid #ff4584;
+    border-bottom: 4px solid #6145ff;
     display: inline-block;
     letter-spacing: 1px;
 }
