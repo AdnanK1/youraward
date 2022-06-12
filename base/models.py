@@ -21,9 +21,9 @@ class Project(models.Model):
 
 class Profile(models.Model):
     picture = CloudinaryField('picture')
+    bio = models.TextField(max_length=60,null=True,blank=True)
     user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
-    projects = models.ManyToManyField(Project,related_name='projects')
     contact = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.user
+        return self.bio
