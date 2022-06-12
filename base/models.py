@@ -17,7 +17,7 @@ class Project(models.Model):
         ordering = ['-updated','-created']
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 class Profile(models.Model):
     picture = CloudinaryField('picture')
@@ -26,4 +26,4 @@ class Profile(models.Model):
     contact = models.CharField(max_length=30)
 
     def __str__(self):
-        return self.bio
+        return str(self.user)
