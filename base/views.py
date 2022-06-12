@@ -1,3 +1,4 @@
+import imp
 from django.shortcuts import render,redirect
 from .forms import CreateUserForm
 from django.contrib import messages
@@ -5,6 +6,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 @login_required(login_url='login')
@@ -18,5 +21,18 @@ def loginPage(request):
 
 def register(request):
     form = CreateUserForm()
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST, request.FILES)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            subject = 'Welcome to YourAward'
+            message = f'Hello {username} we welcome you to YourAward Application'
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [email]
+            send_mail(subject,message,from_email,recipient_list, fail_silently=False)
+            user = form.save()
+            login(request,user,backend = 'django.contrib.auth.backends.ModelBackend')
+            return redirect('home')
     context = {'form':form}
     return render(request,'auth/register.html',context)
