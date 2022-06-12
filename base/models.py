@@ -22,7 +22,7 @@ class Project(models.Model):
 class Profile(models.Model):
     picture = CloudinaryField('picture')
     user = models.ForeignKey(User,on_delete=models.SET_NULL, null=True)
-    projects = models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
+    projects = models.ManyToManyField(Project,related_name='projects')
     contact = models.CharField(max_length=30)
 
     def __str__(self):
