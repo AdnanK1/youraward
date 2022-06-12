@@ -9,4 +9,7 @@ urlpatterns = [
     path('submission',views.submission,name='submission'),
     path('user',views.user,name='user'),
     path('profile',views.profile,name='profile'),
+
+    path('api/project',views.ProjectList.as_view()),
+    path('api/profile',views.ProfileList.as_view()),
 ]

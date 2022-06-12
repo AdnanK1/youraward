@@ -7,6 +7,11 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Profile,Project
+from .serializer import ProfileSerializer,ProjectSerializer
+
 
 # Create your views here.
 @login_required(login_url='login')
@@ -82,3 +87,15 @@ def user(request):
 def profile(request):
     context = {}
     return render(request,'profile.html',context)
+
+class ProjectList(APIView):
+    def get(self,request,format=None):
+        all_project = Project.objects.all()
+        serializer = ProjectSerializer(all_project, many=True)
+        return Response(serializer.data)
+
+class ProfileList(APIView):
+    def get(self,request,format=None):
+        all_profile = Profile.objects.all()
+        serializer = ProfileSerializer(all_profile,many=True)
+        return Response(serializer.data)
