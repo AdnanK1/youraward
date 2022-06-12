@@ -53,3 +53,7 @@ def register(request):
             return redirect('home')
     context = {'form':form}
     return render(request,'auth/register.html',context)
+
+def submission(request):
+    context = {}
+    return render(request,'submission.html',context)
