@@ -18,7 +18,12 @@ from django.urls import reverse
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    projects = Project.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    projects = Project.objects.filter(
+        Q(title__icontains=q) |
+        Q(description__icontains=q)
+    )
+
     profiles =  Profile.objects.all()
     context = {'projects':projects,'profiles':profiles}
     return render(request,'home.html',context)
