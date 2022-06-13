@@ -114,3 +114,6 @@ def likeProject(request,pk):
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('home',args=[str(pk)]))
 
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
