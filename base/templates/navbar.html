@@ -7,7 +7,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <form class="d-flex" action="{% url 'home' %}" method="GET" style="margin-left: 15%;">
-      <input class="form-control" type="search" name="q" placeholder=" Search" aria-label="Search">
+      <input class="form-control" type="search" name="q" placeholder=" Search" aria-label="Search" style="border-radius: 2cm; ">
     </form>
     <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 35%;">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -24,6 +24,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{% url 'profile' user.id %}">View Profile</a></li>
             <li><a class="dropdown-item" href="{% url 'user' %}">Create Profile</a></li>
+            <li><a class="dropdown-item" href="#">Update Profile</a></li>
           </ul>
         </li>
         <li class="nav-item">
