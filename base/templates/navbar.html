@@ -24,7 +24,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{% url 'profile' user.id %}">View Profile</a></li>
             <li><a class="dropdown-item" href="{% url 'user' %}">Create Profile</a></li>
-            <li><a class="dropdown-item" href="#">Update Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'update-profile' user.id %}">Update Profile</a></li>
           </ul>
         </li>
         <li class="nav-item">

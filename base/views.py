@@ -96,11 +96,9 @@ def user(request):
 
 @login_required(login_url='login')
 def profile(request,pk):
-  
-    project = Project.objects.get(id=pk)
     profile = Profile.objects.get(id=pk)
 
-    context = {'project':project, 'profile':profile}
+    context = {'profile':profile}
     return render(request,'profile.html',context)
 
 class ProjectList(APIView):
@@ -125,3 +123,17 @@ def likeProject(request,pk):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def updateProfile(request,pk):
+    profile = Profile.objects.get(id=pk)
+    form = BioForm(instance=profile)
+
+    if request.method == 'POST':
+        form = BioForm(request.POST,instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    
+    context={'form':form}
+    return render(request,'user.html',context)

@@ -11,6 +11,7 @@ urlpatterns = [
     path('user',views.user,name='user'),
     path('profile/<str:pk>',views.profile,name='profile'),
     path('like/<str:pk>',views.likeProject,name='like_project'),
+    path('update-room/<str:pk>',views.updateProfile,name='update-profile'),
 
     path('api/project',views.ProjectList.as_view()),
     path('api/profile',views.ProfileList.as_view()),
