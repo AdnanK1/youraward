@@ -84,8 +84,13 @@ def user(request):
     context = {'form':form}
     return render(request,'user.html',context)
 
-def profile(request):
-    context = {}
+@login_required(login_url='login')
+def profile(request,pk):
+    # user = User.objects.get(id=pk)
+    project = Project.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
+
+    context = {'project':project, 'profile':profile}
     return render(request,'profile.html',context)
 
 class ProjectList(APIView):
