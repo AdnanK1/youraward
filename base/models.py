@@ -13,6 +13,9 @@ class Project(models.Model):
     updated = models.DateTimeField(auto_now=True) 
     created = models.DateTimeField(auto_now_add=True)
 
+    def total_likes(self):
+        return self.likes.count()
+
     class Meta:
         ordering = ['-updated','-created']
 

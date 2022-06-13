@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import CreateUserForm,SubmitProject,BioForm
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
@@ -11,6 +11,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Profile,Project
 from .serializer import ProfileSerializer,ProjectSerializer
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 # Create your views here.
@@ -106,3 +108,9 @@ class ProfileList(APIView):
         all_profile = Profile.objects.all()
         serializer = ProfileSerializer(all_profile,many=True)
         return Response(serializer.data)
+
+def likeProject(request,pk):
+    post = get_object_or_404(Project,id=request.POST.get('like_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('home',args=[str(pk)]))
+
