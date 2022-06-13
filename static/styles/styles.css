@@ -2,7 +2,45 @@
     padding: 5px;
  }
  
-
+ .form{
+    position: absolute;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-45%);
+}
+.inputBx{
+    margin-bottom: 20px;
+}
+label{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: #111;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+input{
+    width: 100%;
+    padding: 10px 20px;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: #607d8b;
+    border-radius: 30px;
+}
+h1{
+    color: #2442ea;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #6145ff;
+    display: inline-block;
+    letter-spacing: 1px;
+}
 /* body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
