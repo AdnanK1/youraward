@@ -81,6 +81,7 @@ def submission(request):
     context = {'form':form}
     return render(request,'submission.html',context)
 
+@login_required(login_url='login')
 def user(request):
     form = BioForm()
     if request.method == 'POST':
@@ -114,11 +115,13 @@ class ProfileList(APIView):
         serializer = ProfileSerializer(all_profile,many=True)
         return Response(serializer.data)
 
+@login_required(login_url='login')
 def likeProject(request,pk):
     post = get_object_or_404(Project,id=request.POST.get('like_id'))
     post.likes.add(request.user)
     return HttpResponseRedirect(reverse('home',args=[str(pk)]))
 
+@login_required(login_url='login')
 def logoutUser(request):
     logout(request)
     return redirect('login')
