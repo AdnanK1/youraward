@@ -1,7 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Profile</h1>
-{% if profile  %}
 
+{% if profile  %}
+<div class="container ">
+    <h1>Profile</h1>
+    <div class="row">
+        <div class="card col-sm-6 text-center">
+            <img src="{{profile.picture.url}}" class="img-fluid img-thumbnail">
+            <div class="card-body">
+                <h6><strong>Profile details</strong></h6>
+                <hr>
+                <p><strong>Username:</strong> {{ profile.user}}</p>
+
+                <p>
+                    {% if profile.bio %}
+                    <small><strong>Bio:</strong> {{ profile.bio }}</small>
+                    {% else %}
+                    <span class="text-danger">No bio</span>
+                    {% endif %}
+                </p>
+                <p><strong>Contact:</strong> {{ profile.contact }}</p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
