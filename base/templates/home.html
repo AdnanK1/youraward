@@ -1,11 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="card" style="width: 18rem;">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+{% if projects %}
+{% for  project in projects%}
+<div class="container">
+  <div class="col-sm-4" >
+    <div class="card" style="width: 18rem;">
+      <img src="{{project.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <small><p>@{{project.user}}</p></small>
+        <h5 class="card-title">{{project.title}}</h5>
+        <p class="card-text">{{project.description}}</p>
+        <p class='card-text'>{{project.created | timesince}} ago</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
     </div>
   </div>
+</div>
+{% endfor %}
+{% else%}
+<div class="shadow p-3 mb-5 bg-body rounded">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p class="text-center" style="color: #000;"><i class="fa-light fa-face-disappointed"></i> Sorry there are no Projects to display</p>
+    </blockquote>
+  </div>
+</div>
+{% endif %}
 {% endblock %}

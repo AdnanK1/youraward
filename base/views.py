@@ -16,7 +16,9 @@ from .serializer import ProfileSerializer,ProjectSerializer
 # Create your views here.
 @login_required(login_url='login')
 def home(request):
-    context = {}
+    projects = Project.objects.all()
+    profiles =  Profile.objects.all()
+    context = {'projects':projects,'profiles':profiles}
     return render(request,'home.html',context)
 
 def loginPage(request):
@@ -86,7 +88,7 @@ def user(request):
 
 @login_required(login_url='login')
 def profile(request,pk):
-    # user = User.objects.get(id=pk)
+  
     project = Project.objects.get(id=pk)
     profile = Profile.objects.get(id=pk)
 
