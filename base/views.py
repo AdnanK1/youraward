@@ -55,16 +55,16 @@ def register(request):
     if request.method == 'POST':
         form = CreateUserForm(request.POST, request.FILES)
         if form.is_valid():
-            username = form.cleaned_data['username']
-            email = form.cleaned_data['email']
-            subject = 'Welcome to YourAward'
-            message = f'Hello {username} we welcome you to YourAward Application'
-            from_email = settings.EMAIL_HOST_USER
-            recipient_list = [email]
-            send_mail(subject,message,from_email,recipient_list)
+            # username = form.cleaned_data['username']
+            # email = form.cleaned_data['email']
+            # subject = 'Welcome to YourAward'
+            # message = f'Hello {username} we welcome you to YourAward Application'
+            # from_email = settings.EMAIL_HOST_USER
+            # recipient_list = [email]
+            # send_mail(subject,message,from_email,recipient_list)
             user = form.save()
             login(request,user,backend = 'django.contrib.auth.backends.ModelBackend')
-            messages.success(request,'You have been registered as a user and an email has been sent')
+            
             return redirect('home')
         else:
             messages.error(request,'An error has occurred when Logging, please use a stronger password')
