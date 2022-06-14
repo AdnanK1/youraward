@@ -61,7 +61,7 @@ def register(request):
             message = f'Hello {username} we welcome you to YourAward Application'
             from_email = settings.EMAIL_HOST_USER
             recipient_list = [email]
-            send_mail(subject,message,from_email,recipient_list, fail_silently=False)
+            send_mail(subject,message,from_email,recipient_list)
             user = form.save()
             login(request,user,backend = 'django.contrib.auth.backends.ModelBackend')
             messages.success(request,'You have been registered as a user and an email has been sent')
