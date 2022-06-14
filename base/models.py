@@ -21,6 +21,9 @@ class Project(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    def save_project(self):
+        self.save() 
 
 class Profile(models.Model):
     picture = CloudinaryField('picture')
@@ -30,3 +33,6 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+    def save_profile(self):
+        self.save()
