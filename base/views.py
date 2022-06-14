@@ -93,7 +93,7 @@ def user(request):
             prof = form.save(commit=False)
             prof.user = request.user
             prof.save()
-            return redirect('profile') 
+            return HttpResponseRedirect(reverse_lazy('home'))
     context = {'form':form}
     return render(request,'user.html',context)
 
