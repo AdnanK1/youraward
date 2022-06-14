@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 from .models import Profile,Project
 from .serializer import ProfileSerializer,ProjectSerializer
 from django.http import HttpResponseRedirect
-from django.urls import reverse
+from django.urls import reverse,reverse_lazy
 
 
 # Create your views here.
@@ -64,7 +64,10 @@ def register(request):
             send_mail(subject,message,from_email,recipient_list, fail_silently=False)
             user = form.save()
             login(request,user,backend = 'django.contrib.auth.backends.ModelBackend')
+            messages.success(request,'You have been registered as a user and an email has been sent')
             return redirect('home')
+        else:
+            messages.error(request,'An error has occurred when Logging, please use a stronger password')
     context = {'form':form}
     return render(request,'auth/register.html',context)
 
@@ -117,7 +120,7 @@ class ProfileList(APIView):
 def likeProject(request,pk):
     post = get_object_or_404(Project,id=request.POST.get('like_id'))
     post.likes.add(request.user)
-    return HttpResponseRedirect(reverse('home',args=[str(pk)]))
+    return HttpResponseRedirect(reverse('home'))
 
 @login_required(login_url='login')
 def logoutUser(request):
@@ -133,7 +136,7 @@ def updateProfile(request,pk):
         form = BioForm(request.POST,instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return HttpResponseRedirect(reverse_lazy('profile'))
     
     context={'form':form}
     return render(request,'user.html',context)
