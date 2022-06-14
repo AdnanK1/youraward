@@ -168,9 +168,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # adding config
 cloudinary.config( 
-  cloud_name = config('CLOUD_NAME'), 
-  api_key = config('API_KEY'), 
-  api_secret = config('API_SECRET') 
+  cloud_name = "dvpe8jhcs", 
+  api_key = "513198623125999", 
+  api_secret = "Tf0rQQraj8Qj7r-clhX2l7D4qTk"
 )
 
 # Email configurations remember to install python-decouple
