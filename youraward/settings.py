@@ -173,6 +173,7 @@ cloudinary.config(
   api_secret = "Tf0rQQraj8Qj7r-clhX2l7D4qTk"
 )
 
+
 # Email configurations remember to install python-decouple
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
