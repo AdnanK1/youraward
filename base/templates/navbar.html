@@ -25,6 +25,8 @@
             <li><a class="dropdown-item" href="{% url 'profile' user.id %}">View Profile</a></li>
             <li><a class="dropdown-item" href="{% url 'user' %}">Create Profile</a></li>
             <li><a class="dropdown-item" href="{% url 'update-profile' user.id %}">Update Profile</a></li>
+            <li><a class="dropdown-item" href="{% url 'api_project' %}">API view for projects</a></li>
+            <li><a class="dropdown-item" href="{% url 'api_profile' %}">API view for profile</a></li>
           </ul>
         </li>
         <li class="nav-item">
